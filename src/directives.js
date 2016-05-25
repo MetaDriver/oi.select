@@ -72,8 +72,8 @@ angular.module('oi.select')
                 var inputElement        = element.find('input'),
                     listElement         = angular.element(element[0].querySelector('.select-dropdown')),
                     placeholder         = placeholderFn(scope),
-                    multiplePlaceholder = multiplePlaceholderFn(scope),
-                    listPlaceholder     = listPlaceholderFn(scope),
+                    //multiplePlaceholder = multiplePlaceholderFn(scope),
+                    //listPlaceholder     = listPlaceholderFn(scope),
                     elementOptions      = optionsFn(scope.$parent) || {},
                     options             = angular.extend({cleanModel: elementOptions.newItem === 'prompt'}, oiSelect.options, elementOptions),
                     editItem            = options.editItem,
@@ -557,9 +557,16 @@ angular.module('oi.select')
                 }
 
                 function modifyPlaceholder() {
-                    var currentPlaceholder = multiple && exists(ctrl.$modelValue) ? multiplePlaceholder : placeholder;
+                    var currentPlaceholder = multiple && exists(ctrl.$modelValue) ? multiplePlaceholderFn(scope) : placeholderFn(scope);
                     inputElement.attr('placeholder', currentPlaceholder);
                 }
+                //multiplePlaceholder = multiplePlaceholderFn(scope),
+                //    listPlaceholder     = listPlaceholderFn(scope),
+
+                    //function modifyPlaceholder() {
+                //    var currentPlaceholder = multiple && exists(ctrl.$modelValue) ? multiplePlaceholder : placeholder;
+                //    inputElement.attr('placeholder', currentPlaceholder);
+                //}
 
                 function trackBy(item) {
                     return oiUtils.getValue(valueName, item, scope.$parent, trackByFn);
