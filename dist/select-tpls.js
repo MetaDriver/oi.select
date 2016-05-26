@@ -499,11 +499,12 @@ angular.module('oi.select')
                     editItemIsCorrected = false;
                 }
 
+
                 scope.$parent.$watch(attrs.ngModel, function(value, oldValue) {
                     var output = compact(value),
                         promise = $q.when(output);
 
-                    modifyPlaceholder();
+                    //modifyPlaceholder();
 
                     if (exists(oldValue) && value !== oldValue) {
                         valueChangedManually();
@@ -891,6 +892,9 @@ angular.module('oi.select')
                     }
                 }
 
+                attrs.$observe('placeholder', function(newValue){
+                    inputElement.attr('placeholder', newValue);
+                });
                 function modifyPlaceholder() {
                     var currentPlaceholder = multiple && exists(ctrl.$modelValue) ? multiplePlaceholderFn(scope) : placeholderFn(scope);
                     inputElement.attr('placeholder', currentPlaceholder);
@@ -1183,4 +1187,4 @@ angular.module('oi.select')      //  MD version
         return input;
     };
 });
-angular.module("oi.select").run(["$templateCache", function($templateCache) {$templateCache.put("src/template.html","<form name=faceForm class=select-search><ul class=select-search-list><li class=\"btn btn-default btn-xs select-search-list-item select-search-list-item_selection\" ng-hide=!!query ng-repeat=\"item in output track by $index\" ng-class=\"{focused: backspaceFocus && $last}\" ng-click=removeItem($index) ng-bind-html=getSearchLabel(item)></li><li class=\"select-search-list-item select-search-list-item_input\" ng-class=\"{\'select-search-list-item_hide\': inputHide}\"><input autocomplete=off name=query ng-model=query ng-keyup=keyUp($event) ng-keydown=keyDown($event)></li><li class=\"select-search-list-item select-search-list-item_loader\" ng-show=showLoader></li></ul></form><div class=select-dropdown ng-show=isOpen><ul ng-if=isOpen class=select-dropdown-optgroup ng-repeat=\"(group, options) in groups\"><div class=select-dropdown-optgroup-header ng-if=\"group && options.length\" ng-bind-html=\"getGroupLabel(group, options)\"></div><li class=select-dropdown-optgroup-option ng-init=\"isDisabled = getDisableWhen(option)\" ng-repeat=\"option in options\" ng-class=\"{\'active\': selectorPosition === groupPos[group] + $index, \'disabled\': isDisabled, \'ungroup\': !group}\" ng-click=\"isDisabled || addItem(option)\" ng-mouseenter=\"setSelection(groupPos[group] + $index)\" ng-bind-html=getDropdownLabel(option)></li></ul></div>");}]);
+angular.module("oi.select").run(["$templateCache", function($templateCache) {$templateCache.put("src/template.html","<div onmousewheel=\"event.deltaY=0; event.wheelDelta=0; event.wheelDeltaY=0; <!--console.log(event);--> if (event.myFlag1) {console.log(\'onmousewheel!\',event); <!--if (event.eventPhase) {console.log(\'!\',event);--> event.preventDefault(); event.stopPropagation(); } else{console.log(\'?\',event); }\" onwheel=\"event.deltaY=0; event.wheelDelta=0; event.wheelDeltaY=0; <!--console.log(event);--> if (event.myFlag2) {console.log(\'onwheel!\',event); <!--if (event.eventPhase) {console.log(\'!\',event);--> event.preventDefault(); event.stopPropagation(); } else{console.log(\'?\',event); }\"><form name=faceForm class=select-search><ul class=select-search-list><li class=\"btn btn-default btn-xs select-search-list-item select-search-list-item_selection\" ng-hide=!!query ng-repeat=\"item in output track by $index\" ng-class=\"{focused: backspaceFocus && $last}\" ng-click=removeItem($index) ng-bind-html=getSearchLabel(item)></li><li class=\"select-search-list-item select-search-list-item_input\" ng-class=\"{\'select-search-list-item_hide\': inputHide}\"><input autocomplete=off name=query ng-model=query ng-keyup=keyUp($event) ng-keydown=keyDown($event)></li><li class=\"select-search-list-item select-search-list-item_loader\" ng-show=showLoader></li></ul></form><div class=select-dropdown ng-show=isOpen onmousewheel=\"event.myFlag1 = true; <!--event.cancelBubble = true;-->\" onwheel=\"event.myFlag2 = true; event.cancelBubble = true;\"><ul ng-show=isOpen class=select-dropdown-optgroup ng-repeat=\"(group, options) in groups\"><div class=select-dropdown-optgroup-header ng-if=\"group && options.length\" ng-bind-html=\"getGroupLabel(group, options)\"></div><li class=select-dropdown-optgroup-option ng-init=\"isDisabled = getDisableWhen(option)\" ng-repeat=\"option in options\" ng-class=\"{\'active\': selectorPosition === groupPos[group] + $index, \'disabled\': isDisabled, \'ungroup\': !group}\" ng-click=\"isDisabled || addItem(option)\" ng-mouseenter=\"setSelection(groupPos[group] + $index)\" ng-bind-html=getDropdownLabel(option)></li></ul></div></div>");}]);

@@ -164,11 +164,12 @@ angular.module('oi.select')
                     editItemIsCorrected = false;
                 }
 
+
                 scope.$parent.$watch(attrs.ngModel, function(value, oldValue) {
                     var output = compact(value),
                         promise = $q.when(output);
 
-                    modifyPlaceholder();
+                    //modifyPlaceholder();
 
                     if (exists(oldValue) && value !== oldValue) {
                         valueChangedManually();
@@ -556,6 +557,9 @@ angular.module('oi.select')
                     }
                 }
 
+                attrs.$observe('placeholder', function(newValue){
+                    inputElement.attr('placeholder', newValue);
+                });
                 function modifyPlaceholder() {
                     var currentPlaceholder = multiple && exists(ctrl.$modelValue) ? multiplePlaceholderFn(scope) : placeholderFn(scope);
                     inputElement.attr('placeholder', currentPlaceholder);
