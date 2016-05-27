@@ -15,7 +15,7 @@
             ng-click="removeItem($index)"
             ng-bind-html="$parent.$hp=getSearchLabel(item)"></li>
         <li class="select-search-list-item select-search-list-item_input"
-            ng-class="{'select-search-list-item_hide': inputHide, 'hide-placeholder': !!$hp}">
+            ng-class="{'select-search-list-item_hide': inputHide, 'hide-placeholder': !!$hp && !multiple}">
             <input autocomplete="off"
                   name="query"
                   ng-model="query"
