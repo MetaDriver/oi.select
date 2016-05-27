@@ -3,15 +3,16 @@
     .hide-placeholder input::-moz-placeholder{color:transparent}
     .hide-placeholder input:-moz-placeholder{color:transparent}
     .hide-placeholder input:-ms-input-placeholder{color:transparent}
+    .abs-pos {position:absolute}
 </style>
 <form name="faceForm"
         class="select-search">
     <ul class="select-search-list">
         <!--ng-hide="listItemHide"-->
         <li class="btn btn-default btn-xs select-search-list-item select-search-list-item_selection"
-        ng-hide="!!query"
+        ng-hide="!!query && !multiple"
             ng-repeat="item in output track by $index"
-            ng-class="{focused: backspaceFocus && $last}"
+            ng-class="{'focused': backspaceFocus && $last, 'abs-pos': !inputHide && !multiple}"
             ng-click="removeItem($index)"
             ng-bind-html="$parent.$hp=getSearchLabel(item)"></li>
         <li class="select-search-list-item select-search-list-item_input"
