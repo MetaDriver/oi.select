@@ -504,7 +504,7 @@ angular.module('oi.select')
                     var output = compact(value),
                         promise = $q.when(output);
 
-                    modifyPlaceholder();
+                    if (multiple) { modifyPlaceholder(); }
 
                     if (exists(oldValue) && value !== oldValue) {
                         valueChangedManually();
@@ -895,12 +895,6 @@ angular.module('oi.select')
                 attrs.$observe('placeholder', function(newValue){
                     inputElement.attr('placeholder', newValue);
                 });
-                //function modifyPlaceholder() {
-                //    var currentPlaceholder = multiple && exists(ctrl.$modelValue) ? multiplePlaceholderFn(scope) : placeholderFn(scope);
-                //    inputElement.attr('placeholder', currentPlaceholder);
-                //}
-                //multiplePlaceholder = multiplePlaceholderFn(scope),
-                //    listPlaceholder     = listPlaceholderFn(scope),
 
                 function modifyPlaceholder() {
                     var currentPlaceholder = multiple && exists(ctrl.$modelValue) ?

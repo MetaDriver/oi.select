@@ -169,7 +169,7 @@ angular.module('oi.select')
                     var output = compact(value),
                         promise = $q.when(output);
 
-                    modifyPlaceholder();
+                    if (multiple) { modifyPlaceholder(); }
 
                     if (exists(oldValue) && value !== oldValue) {
                         valueChangedManually();
