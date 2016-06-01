@@ -611,7 +611,6 @@ angular.module('oi.select')
 
                     if (multiple) {
                         ctrl.$setViewValue(angular.isArray(ctrl.$modelValue) ? ctrl.$modelValue.concat(modelOption) : [modelOption]);
-
                     } else {
                         ctrl.$setViewValue(modelOption);
                         restoreInput();
